@@ -74,7 +74,9 @@ def build_profile_table(__grouped_profiles: list[PythonFileProfile]):
         data.extend([group] + (["-"] * (cols - 1)))
         rows += 1
         for profile in list(profiles):
-            file_link = os.path.relpath(profile._full_file_path, working_dir)
+            file_link = os.path.relpath(profile._full_file_path, working_dir).replace(
+                "\\", "/"
+            )
             data.extend(
                 [
                     f"[{profile._file_py}]({file_link})",
