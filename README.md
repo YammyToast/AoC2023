@@ -8,6 +8,7 @@
 <https://adventofcode.com/>
 
 ## My Solutions
+Automatically generated using profiler.py 😃
 <!--TABLEBEGIN-->
 
 
@@ -16,9 +17,12 @@
 |File|Lines|Process Time|Imports|
 | :---: | :---: | :---: | :---: |
 |d1|-|-|-|
-|d1-1.py|28|None|re|
-|d1-2.py|46|None|re|
+|d1-1.py|20|None|re|
+|d1-2.py|37|None|re|
 |d2|-|-|-|
 |d2-1.py|19|None|re|
 |d2-2.py|20|None|re|
+|d3|-|-|-|
+|d3-1.py|30|None|re|
+|d3-2.py|35|None|re|
 <!--TABLEEND-->
