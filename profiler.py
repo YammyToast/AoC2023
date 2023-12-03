@@ -1,10 +1,14 @@
 from dataclasses import dataclass
 from time import *
 import re
+from mdutils.mdutils import MdUtils
+import itertools
+
 
 from pathlib import Path
 working_dir = Path().absolute()
 profiler_path = Path(__file__)
+
 
 
 @dataclass
@@ -31,12 +35,10 @@ def collect_imports(__file_path):
     with open(__file_path) as f:
         for line in f:
             # Pattern from: https://stackoverflow.com/a/53635205
-            if (x:= re.search(r"^\s*(?:from|import)\s+(\w+(?:\s*,\s*\w+)*)", line)) != None:
+            if (x := re.search(r"^\s*(?:from|import)\s+(\w+(?:\s*,\s*\w+)*)", line)) != None:
                 # group(1) extracts the library name. god-bless python regex.
                 imports.append(x.group(1))
     return imports
-
-
 
 
 def get_profiles(__file_path_list: list[Path]):
@@ -52,6 +54,31 @@ def get_profiles(__file_path_list: list[Path]):
         ))
     return profiles
 
+def build_profile_table(__grouped_profiles: list[PythonFileProfile]):
+    data = ["File", "Lines", "Process Time", "Imports", "Full File Path"]
+    cols = len(data)
+    rows = 1
+    md_table = MdUtils("")
+    for group, profiles in __grouped_profiles:
+        data.extend([group] + (["-"] * (cols - 1)))
+        rows+=1
+        for profile in list(profiles):
+            data.extend([profile._file_py, profile._lines, profile._process_time_ms, ",".join(profile._imports), profile._full_file_path])
+            rows+=1
+    md_table.new_table(columns=5, rows=rows, text=data, text_align="center")
+    return md_table.get_md_text()
+
+def append_table(__table: str):
+    with open("README.md", "r") as f:
+        lines = f.readlines()
+    table_start = lines.index("<!--TABLEBEGIN-->\n")
+    table_end = lines.index("<!--TABLEEND-->\n")
+    pre = "".join(lines[:table_start+1])
+    post = "".join(lines[table_end:])
+    new = pre + __table + post
+    with open("README.md", "w") as f:
+        f.write(new)
+    return
 
 def main():
     # Remove profiler from the profiler.
@@ -59,7 +86,9 @@ def main():
         filter(lambda x: x != profiler_path, working_dir.rglob("*.py")))
 
     profiles = get_profiles(all_python_file_list)
-    print(profiles)
+    grouped_profiles = itertools.groupby(profiles, lambda x: x._parent_dir)
+    table = build_profile_table(grouped_profiles)
+    append_table(table)
 
 
 if __name__ == '__main__':

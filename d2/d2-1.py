@@ -1,6 +1,6 @@
 import re
 
-config = {"red": 12,"green": 13,"blue": 14}
+config = {"red": 12, "green": 13, "blue": 14}
 
 
 def check_line(__text: str):
@@ -12,13 +12,15 @@ def check_line(__text: str):
         it += 2
     return text[1]
 
+
 def analyse_file(__filename: str):
     with open(__filename) as f:
         lines = f.readlines()
     sum = 0
     for line in lines:
-        sum+=int(check_line(line))
+        sum += int(check_line(line))
     return sum
+
 
 if __name__ == '__main__':
     print(analyse_file('input.txt'))
