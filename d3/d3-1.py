@@ -40,3 +40,4 @@ def analyse_file(__filename: str):
 
 if __name__ == "__main__":
     print(analyse_file("input.txt"))
+    print("DAYTHREE!")
