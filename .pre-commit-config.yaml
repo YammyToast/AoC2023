@@ -9,3 +9,10 @@ repos:
     rev: 22.10.0
     hooks:
     -   id: black
+-   repo: local
+    hooks:
+    -   id: yammy-aoc-profiler
+        name: yammy-aoc-profiler
+        entry: python profiler.py
+        language: system
+        types: [python]
