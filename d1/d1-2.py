@@ -37,7 +37,7 @@ def collect_numbers(__text: str):
     return str(first) + str(last)
 
 
-def read_file(__filename: str):
+def analyse_file(__filename: str):
     # Open input file and read all lines into variable
     with open(__filename) as f:
         lines = f.readlines()
@@ -52,4 +52,4 @@ def read_file(__filename: str):
 
 
 if __name__ == '__main__':
-    print(read_file('input.txt'))
+    print(analyse_file('input.txt'))
