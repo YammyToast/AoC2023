@@ -3,7 +3,7 @@ from time import *
 import re
 from mdutils.mdutils import MdUtils
 import itertools
-
+import os
 
 from pathlib import Path
 
@@ -20,6 +20,7 @@ class PythonFileProfile:
     _lines: int
     _process_time_ms: int
     _imports: list[str]
+    _full_file_path: str
 
 
 def is_comment(__line: str):
@@ -58,6 +59,7 @@ def get_profiles(__file_path_list: list[Path]):
                 _lines=count_file_lines(file),
                 _process_time_ms=None,
                 _imports=collect_imports(file),
+                _full_file_path=file,
             )
         )
     return profiles
@@ -72,9 +74,10 @@ def build_profile_table(__grouped_profiles: list[PythonFileProfile]):
         data.extend([group] + (["-"] * (cols - 1)))
         rows += 1
         for profile in list(profiles):
+            file_link = os.path.relpath(profile._full_file_path, working_dir)
             data.extend(
                 [
-                    profile._file_py,
+                    f"[{profile._file_py}]({file_link})",
                     profile._lines,
                     profile._process_time_ms,
                     ",".join(profile._imports),
