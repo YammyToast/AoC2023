@@ -18,7 +18,6 @@ class PythonFileProfile:
     _lines: int
     _process_time_ms: int
     _imports: list[str]
-    _full_file_path: Path
 
 
 def count_file_lines(__file_path):
@@ -50,12 +49,11 @@ def get_profiles(__file_path_list: list[Path]):
             _lines=count_file_lines(file),
             _process_time_ms=None,
             _imports=collect_imports(file),
-            _full_file_path=file
         ))
     return profiles
 
 def build_profile_table(__grouped_profiles: list[PythonFileProfile]):
-    data = ["File", "Lines", "Process Time", "Imports", "Full File Path"]
+    data = ["File", "Lines", "Process Time", "Imports"]
     cols = len(data)
     rows = 1
     md_table = MdUtils("")
@@ -63,9 +61,9 @@ def build_profile_table(__grouped_profiles: list[PythonFileProfile]):
         data.extend([group] + (["-"] * (cols - 1)))
         rows+=1
         for profile in list(profiles):
-            data.extend([profile._file_py, profile._lines, profile._process_time_ms, ",".join(profile._imports), profile._full_file_path])
+            data.extend([profile._file_py, profile._lines, profile._process_time_ms, ",".join(profile._imports)])
             rows+=1
-    md_table.new_table(columns=5, rows=rows, text=data, text_align="center")
+    md_table.new_table(columns=4, rows=rows, text=data, text_align="center")
     return md_table.get_md_text()
 
 def append_table(__table: str):

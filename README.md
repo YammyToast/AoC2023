@@ -13,12 +13,12 @@
 
 
 
-|File|Lines|Process Time|Imports|Full File Path|
-| :---: | :---: | :---: | :---: | :---: |
-|d1|-|-|-|-|
-|d1-1.py|28|None|re|C:\Users\James\Documents\Code\AoC\d1\d1-1.py|
-|d1-2.py|46|None|re|C:\Users\James\Documents\Code\AoC\d1\d1-2.py|
-|d2|-|-|-|-|
-|d2-1.py|19|None|re|C:\Users\James\Documents\Code\AoC\d2\d2-1.py|
-|d2-2.py|20|None|re|C:\Users\James\Documents\Code\AoC\d2\d2-2.py|
+|File|Lines|Process Time|Imports|
+| :---: | :---: | :---: | :---: |
+|d1|-|-|-|
+|d1-1.py|28|None|re|
+|d1-2.py|46|None|re|
+|d2|-|-|-|
+|d2-1.py|19|None|re|
+|d2-2.py|20|None|re|
 <!--TABLEEND-->
