@@ -111,7 +111,13 @@ def main():
 
     profiles = get_profiles(all_python_file_list)
     grouped_profiles = itertools.groupby(profiles, lambda x: x._parent_dir)
-    table = build_profile_table(grouped_profiles)
+
+    unpacked_groups = []
+    for group, profiles in grouped_profiles:
+        unpacked_groups.append((group, [x for x in profiles]))
+
+    sorted_profiles = sorted(unpacked_groups, key=lambda x: x[0])
+    table = build_profile_table(sorted_profiles)
     append_table(table)
 
 
