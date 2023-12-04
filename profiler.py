@@ -114,7 +114,9 @@ def main():
 
     unpacked_groups = []
     for group, profiles in grouped_profiles:
-        unpacked_groups.append((group, [x for x in profiles]))
+        unpacked_groups.append(
+            (group, sorted([x for x in profiles], key=lambda x: x._file_py))
+        )
 
     sorted_profiles = sorted(unpacked_groups, key=lambda x: x[0])
     table = build_profile_table(sorted_profiles)
