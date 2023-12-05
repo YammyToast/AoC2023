@@ -1,9 +1,11 @@
 from dataclasses import dataclass
-from time import *
+import time
 import re
 from mdutils.mdutils import MdUtils
 import itertools
 import os
+import importlib.util
+import sys
 
 from pathlib import Path
 
@@ -36,6 +38,16 @@ def count_file_lines(__file_path: str):
     return c
 
 
+def get_runtime(__file_path: str):
+    # print(__file_path.parts[-1])
+    spec = importlib.util.spec_from_file_location(
+        f"{__file_path.parts[-2]}.{__file_path.parts[-1]}", __file_path
+    )
+    mod = importlib.util.module_from_spec(spec)
+    start_time = time.time()
+    return round((time.time() - start_time) * 1000, 5)
+
+
 def collect_imports(__file_path: str):
     imports = []
     with open(__file_path) as f:
@@ -57,7 +69,7 @@ def get_profiles(__file_path_list: list[Path]):
                 _file_py=file.parts[-1],
                 _parent_dir=file.parts[-2],
                 _lines=count_file_lines(file),
-                _process_time_ms=None,
+                _process_time_ms=get_runtime(file),
                 _imports=collect_imports(file),
                 _full_file_path=file,
             )
