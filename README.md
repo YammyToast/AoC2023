@@ -32,7 +32,6 @@ This repository contains solutions and explanations for the programming puzzles 
 |[d5-2.py](d5/d5-2.py)|56|0.0|copy|
 |[d5-example.py](d5/d5-example.py)|107|0.0|re,random|
 |d7|-|-|-|
-|[d7-1.py](d7/d7-1.py)|45|0.0|collections,enum,itertools|
-|[d7-2.py](d7/d7-2.py)|46|0.0|collections,enum,itertools|
-|[d7-example.py](d7/d7-example.py)|102|0.0|collections,numpy|
+|[d7-1.py](d7/d7-1.py)|46|0.0|collections,enum,itertools|
+|[d7-2.py](d7/d7-2.py)|52|0.0|collections,enum,itertools|
 <!--TABLEEND-->
