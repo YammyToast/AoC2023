@@ -14,13 +14,8 @@ def analyse_file(__filename: str):
     while loc != "ZZZ":
         for instruction in instructions:
             if loc == "ZZZ":
-                print("YEAH IM HERE")
                 break
-            if instruction == "L":
-                loc = destinations[loc][0]
-            else:
-                loc = destinations[loc][1]
-            # loc = destinations[loc][instruction!="L"]
+            loc = destinations[loc][instruction != "L"]
             steps += 1
 
     print(loc, steps)

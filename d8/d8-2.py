@@ -1,4 +1,5 @@
 import re
+import numpy
 
 
 def analyse_file(__filename: str):
@@ -9,21 +10,23 @@ def analyse_file(__filename: str):
     destinations = {}
     for dest in raw_destinations:
         destinations[dest[0]] = tuple(re.sub("[() ]", "", dest[1]).split(","))
-    loc = "AAA"
-    steps = 0
-    while loc != "ZZZ":
-        for instruction in instructions:
-            if loc == "ZZZ":
-                print("YEAH IM HERE")
-                break
-            if instruction == "L":
-                loc = destinations[loc][0]
-            else:
-                loc = destinations[loc][1]
-            # loc = destinations[loc][instruction!="L"]
-            steps += 1
 
-    print(loc, steps)
+    starts = [c for c in destinations.keys() if re.match(r"([A-Z]{2}A)", c) != None]
+    ends = [c for c in destinations.keys() if re.match(r"([A-Z]{2}Z)", c) != None]
+
+    step_list = []
+    for start in starts:
+        loc = start
+        steps = 0
+
+        while loc not in ends:
+            for instruction in instructions:
+                if loc in ends:
+                    break
+                loc = destinations[loc][instruction != "L"]
+                steps += 1
+        step_list.append(steps)
+    print(*numpy.lcm.reduce(step_list))
 
 
 if __name__ == "__main__":

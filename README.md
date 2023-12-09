@@ -34,4 +34,7 @@ This repository contains solutions and explanations for the programming puzzles 
 |d7|-|-|-|
 |[d7-1.py](d7/d7-1.py)|46|0.0|collections,enum,itertools|
 |[d7-2.py](d7/d7-2.py)|52|0.0|collections,enum,itertools|
+|d8|-|-|-|
+|[d8-1.py](d8/d8-1.py)|25|0.0|re|
+|[d8-2.py](d8/d8-2.py)|25|0.0|re|
 <!--TABLEEND-->
