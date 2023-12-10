@@ -37,4 +37,7 @@ This repository contains solutions and explanations for the programming puzzles 
 |d8|-|-|-|
 |[d8-1.py](d8/d8-1.py)|20|0.0|re|
 |[d8-2.py](d8/d8-2.py)|26|0.0|re,numpy|
+|d9|-|-|-|
+|[d9-1.py](d9/d9-1.py)|27|0.0||
+|[d9-2.py](d9/d9-2.py)|22|0.0||
 <!--TABLEEND-->
